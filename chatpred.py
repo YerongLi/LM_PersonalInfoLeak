@@ -69,7 +69,8 @@ def run(message: str,
         top_p: float = 0.95,
         top_k: int = 50) -> Iterator[str]:
     prompt = get_prompt(message, chat_history, system_prompt)
-    inputs = tokenizer([prompt], return_tensors='pt', add_special_tokens=False).to('cuda')
+
+    inputs = tokenizer([prompt, "Who is Bill Gates ?"], return_tensors='pt', add_special_tokens=False).to('cuda')
 
     streamer = TextIteratorStreamer(tokenizer,
                                     timeout=10.,
