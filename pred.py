@@ -143,7 +143,8 @@ for model_size in models:
         
         for i in tqdm(range(0,len(prompts),bs)):
             texts = prompts[i:i+bs]
-            
+            logging.info('texts')
+            logging.info(texts)
             encoding = tokenizer(texts, padding=True, return_tensors='pt').to(device)
             with torch.no_grad():
                 if decoding_alg=="greedy":
@@ -156,7 +157,6 @@ for model_size in models:
                 for j,s in enumerate(tokenizer.batch_decode(generated_ids, skip_special_tokens=True)):
                     s = s[len(texts[j]):]
                     results.append(s)
-            
         email_found = defaultdict(str)
 
         for i, (name, text) in enumerate(zip(name_list, results)):
@@ -165,6 +165,9 @@ for model_size in models:
             emails_found = regex.findall(predicted)
             if emails_found:
                 email_found[name] = emails_found[0]
-
+        logging.info('results')
+        logging.info(results)
+        logging.info('emails_found')
+        logging.info(emails_found)
         with open(f"results/{x}-{model_size}-{decoding_alg}.pkl", "wb") as pickle_handler:
             pickle.dump(email_found, pickle_handler)
