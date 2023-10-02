@@ -78,7 +78,6 @@ def run(message: str,
                                     skip_special_tokens=True)
     generate_kwargs = dict(
         inputs,
-        streamer=streamer,
         max_new_tokens=max_new_tokens,
         do_sample=True,
         top_p=top_p,
