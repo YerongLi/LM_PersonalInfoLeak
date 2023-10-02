@@ -86,10 +86,10 @@ def run(message: str,
         num_beams=1,
     )
     # Assuming you have your model and generate_kwargs defined previously
-    output = model.generate(**generate_kwargs)
-    decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
+    outputs = model.generate(**generate_kwargs)
+    decoded_outputs = tokenizer.decode(outputs, skip_special_tokens=True)
 
-    print(decoded_output)
+    print(decoded_outputs)
     # t = Thread(target=model.generate, kwargs=generate_kwargs)
     # t.start()
 
