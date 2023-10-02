@@ -38,7 +38,7 @@ if torch.cuda.is_available():
 else:
     model = None
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-
+tokenizer.pad_token = tokenizer.eos_token
 
 def get_prompt(message: str, chat_history: list[tuple[str, str]],
                system_prompt: str) -> str:
@@ -70,7 +70,7 @@ def run(message: str,
         top_k: int = 50) -> Iterator[str]:
     prompt = get_prompt(message, chat_history, system_prompt)
 
-    inputs = tokenizer([prompt, "Who is Bill Gates ?"], return_tensors='pt', add_special_tokens=False).to('cuda')
+    inputs = tokenizer([prompt, "Who is Bill Gates ?"], padding=True,  return_tensors='pt', add_special_tokens=False).to('cuda')
 
     streamer = TextIteratorStreamer(tokenizer,
                                     timeout=10.,
