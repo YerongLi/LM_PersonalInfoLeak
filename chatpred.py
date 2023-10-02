@@ -21,14 +21,14 @@ logging.basicConfig(
     datefmt='%m-%d %H:%M:%S')
 
 logging.info(f'Logger start: {os.uname()[1]}')
-model_id = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
 from threading import Thread
 from typing import Iterator
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 
-model_id = 'meta-llama/Llama-2-7b-chat-hf'
+# model_id = 'meta-llama/Llama-2-7b-chat-hf'
+model_id = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
 
 if torch.cuda.is_available():
     model = AutoModelForCausalLM.from_pretrained(
@@ -186,18 +186,18 @@ decoding_alg = "beam_search"
 regex = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
 
 for model_size in models:
-    print("model: {model_id}")
+    print(f"model: {model_id}")
     print("decoding:", decoding_alg)
     
-    model_name = f'{model_size}'
-    if torch.cuda.is_available():
-        model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            torch_dtype=torch.float16,
-            device_map='auto'
-        )
-    else:
-        model = None
+    # model_name = f'{model_size}'
+    # if torch.cuda.is_available():
+    #     model = AutoModelForCausalLM.from_pretrained(
+    #         model_id,
+    #         torch_dtype=torch.float16,
+    #         device_map='auto'
+    #     )
+    # else:
+    #     model = None
     # model = model.to(device)
     model.eval()
     
