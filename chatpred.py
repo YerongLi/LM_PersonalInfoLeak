@@ -41,7 +41,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_id)
 tokenizer.pad_token = tokenizer.eos_token
 
 def get_prompt(message: str, chat_history: list[tuple[str, str]],
-               system_prompt: str) -> str:
+               ) -> str:
     texts=[]
     # texts = [f'<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n']
     # The first user input is _not_ stripped
@@ -63,12 +63,11 @@ def get_input_token_length(message: str, chat_history: list[tuple[str, str]], sy
 
 def run(message: str,
         chat_history: list[tuple[str, str]],
-        system_prompt: str = '',
         max_new_tokens: int = 1024,
         temperature: float = 0.8,
         top_p: float = 0.95,
         top_k: int = 50) -> Iterator[str]:
-    prompt = get_prompt(message, chat_history, system_prompt)
+    prompt = get_prompt(message, chat_history)
 
     inputs = tokenizer([prompt, "Who is Bill Gates ?"], padding=True,  return_tensors='pt', add_special_tokens=False).to('cuda')
 
@@ -87,7 +86,7 @@ def run(message: str,
     )
     # Assuming you have your model and generate_kwargs defined previously
     outputs = model.generate(**generate_kwargs)
-    decoded_outputs = tokenizer.decode(outputs, skip_special_tokens=True)
+    decoded_outputs = tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
     print(decoded_outputs)
     # t = Thread(target=model.generate, kwargs=generate_kwargs)
