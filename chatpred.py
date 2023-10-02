@@ -29,7 +29,6 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStream
 
 # model_id = 'meta-llama/Llama-2-7b-chat-hf'
 model_id = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
-
 if torch.cuda.is_available():
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
@@ -92,6 +91,10 @@ def run(message: str,
     for text in streamer:
         outputs.append(text)
         yield ''.join(outputs)
+
+run('Who is Elon Musk ?')
+exit(1)
+
 
 def get_local_domain(email):
     return email.split('@')
