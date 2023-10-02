@@ -21,9 +21,16 @@ logging.basicConfig(
     datefmt='%m-%d %H:%M:%S')
 
 logging.info(f'Logger start: {os.uname()[1]}')
-model_name = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
-
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+model_id = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
+if torch.cuda.is_available():
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        torch_dtype=torch.float16,
+        device_map='auto'
+    )
+else:
+    model = None
+tokenizer = AutoTokenizer.from_pretrained(model_id)
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "left"
 
@@ -120,11 +127,11 @@ decoding_alg = "beam_search"
 regex = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
 
 for model_size in models:
-    print("model: gpt-neo-"+model_size)
+    print("model: {model_id}")
     print("decoding:", decoding_alg)
     
     model_name = f'{model_size}'
-    model = AutoModelForCausalLM.from_pretrained(model_name, token='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')
+    model = AutoModelForCausalLM.from_pretrained(model_id)
     model = model.to(device)
     model.eval()
     
