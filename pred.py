@@ -95,7 +95,7 @@ def get_prompts_context(filename, k=100):
 settings = ["zero_shot-a", "zero_shot-b", "zero_shot-c", "zero_shot-d"]
 # settings = ["one_shot", "two_shot", "five_shot"] + ["one_shot_non_domain", "two_shot_non_domain", "five_shot_non_domain"]
 
-models = ['125M', '1.3B', '2.7B']
+models = ['125M', '1.3B']
 
 decoding_alg = "greedy"
 
