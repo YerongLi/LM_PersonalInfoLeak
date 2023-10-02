@@ -3,6 +3,10 @@ from transformers import pipeline
 from tqdm import tqdm
 import torch
 import re
+import os
+
+import logging
+
 from collections import defaultdict
 from transformers import GPT2Tokenizer, AutoModelForCausalLM
 import random
@@ -10,7 +14,13 @@ import random
 
 gid = 0
 device = f"cuda:{gid}"
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-4s - %(filename)-6s:%(lineno)d - %(message)s',
+    level=logging.INFO,
+    filename='./output.log',
+    datefmt='%m-%d %H:%M:%S')
 
+logging.info(f'Logger start: {os.uname()[1]}')
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "left"
