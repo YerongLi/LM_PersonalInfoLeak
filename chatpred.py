@@ -1,5 +1,5 @@
 import pickle
-from transformers import pipeline
+# from transformers import pipeline
 from tqdm import tqdm
 import torch
 import re
