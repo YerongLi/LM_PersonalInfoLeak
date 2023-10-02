@@ -99,7 +99,8 @@ settings = ["zero_shot-a"]
 # models = ['125M', '1.3B']
 models = ['125M']
 
-decoding_alg = "greedy"
+# decoding_alg = "greedy"
+decoding_alg = "beam_search"
 
 regex = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
 
