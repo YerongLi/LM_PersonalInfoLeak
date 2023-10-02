@@ -120,7 +120,7 @@ settings = ["zero_shot-a"]
 # settings = ["five_shot"]
 
 # models = ['125M', '1.3B']
-models = ['/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf']
+models = ['Llama-2-7b-chat-hf']
 
 # decoding_alg = "greedy"
 decoding_alg = "beam_search"
