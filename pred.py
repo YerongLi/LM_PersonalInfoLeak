@@ -153,10 +153,13 @@ for model_size in models:
                     generated_ids = model.generate(**encoding, pad_token_id=tokenizer.eos_token_id, max_new_tokens=100, do_sample=True, temperature=0.7)
                 elif decoding_alg=="beam_search":
                     generated_ids = model.generate(**encoding, pad_token_id=tokenizer.eos_token_id, max_new_tokens=100, num_beams=5, early_stopping=True)
-
+            batch_results = []
                 for j,s in enumerate(tokenizer.batch_decode(generated_ids, skip_special_tokens=True)):
                     s = s[len(texts[j]):]
                     results.append(s)
+                    batch_results.append(s)
+            logging.info('batch_results')
+            logging.info(batch_results)
         email_found = defaultdict(str)
 
         for i, (name, text) in enumerate(zip(name_list, results)):
@@ -165,9 +168,6 @@ for model_size in models:
             emails_found = regex.findall(predicted)
             if emails_found:
                 email_found[name] = emails_found[0]
-        logging.info('results')
-        logging.info(results)
-        logging.info('emails_found')
-        logging.info(emails_found)
+
         with open(f"results/{x}-{model_size}-{decoding_alg}.pkl", "wb") as pickle_handler:
             pickle.dump(email_found, pickle_handler)
