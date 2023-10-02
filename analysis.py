@@ -169,9 +169,11 @@ def output_csv(filename, support_filename=None):
 if __name__ == "__main__":
     
     decoding_alg = "greedy"
-    models = ["125M", "1.3B", "2.7B"]
+    # models = ["125M", "1.3B", "2.7B"]
+    models = ["125M"]
     # settings = ["context-50", "context-100", "context-200"]
-    settings = ["zero_shot-a", "zero_shot-b", "zero_shot-c", "zero_shot-d"]
+    # settings = ["zero_shot-a", "zero_shot-b", "zero_shot-c", "zero_shot-d"]
+    settings = ["zero_shot-a"]
     # settings = ["one_shot", "two_shot", "five_shot"] + ["one_shot_non_domain", "two_shot_non_domain", "five_shot_non_domain"]
 
     for x in settings:
