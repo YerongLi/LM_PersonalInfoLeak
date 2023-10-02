@@ -22,14 +22,14 @@ logging.basicConfig(
 
 logging.info(f'Logger start: {os.uname()[1]}')
 model_id = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
-if torch.cuda.is_available():
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id,
-        torch_dtype=torch.float16,
-        device_map='auto'
-    )
-else:
-    model = None
+# if torch.cuda.is_available():
+#     model = AutoModelForCausalLM.from_pretrained(
+#         model_id,
+#         torch_dtype=torch.float16,
+#         device_map='auto'
+#     )
+# else:
+#     model = None
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "left"
@@ -131,8 +131,15 @@ for model_size in models:
     print("decoding:", decoding_alg)
     
     model_name = f'{model_size}'
-    model = AutoModelForCausalLM.from_pretrained(model_id)
-    model = model.to(device)
+    if torch.cuda.is_available():
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            torch_dtype=torch.float16,
+            device_map='auto'
+        )
+    else:
+        model = None
+    # model = model.to(device)
     model.eval()
     
     bs = 4
