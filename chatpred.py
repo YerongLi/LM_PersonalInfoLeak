@@ -90,6 +90,7 @@ def run(message: str,
     outputs = []
     for text in streamer:
         outputs.append(text)
+        print(outputs)
         yield ''.join(outputs)
 
 ans = str(run('Who is Elon Musk ?', [], ''))
