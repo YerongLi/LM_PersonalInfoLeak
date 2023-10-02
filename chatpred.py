@@ -71,10 +71,7 @@ def run(message: str,
 
     inputs = tokenizer([prompt, "Who is Bill Gates ?"], padding=True,  return_tensors='pt', add_special_tokens=False).to('cuda')
 
-    streamer = TextIteratorStreamer(tokenizer,
-                                    timeout=10.,
-                                    skip_prompt=True,
-                                    skip_special_tokens=True)
+
     generate_kwargs = dict(
         inputs,
         max_new_tokens=max_new_tokens,
