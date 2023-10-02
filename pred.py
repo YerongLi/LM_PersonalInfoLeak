@@ -8,7 +8,7 @@ from transformers import GPT2Tokenizer, AutoModelForCausalLM
 import random
 
 
-gid = 1
+gid = 0
 device = f"cuda:{gid}"
 
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
