@@ -42,7 +42,8 @@ tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 def get_prompt(message: str, chat_history: list[tuple[str, str]],
                system_prompt: str) -> str:
-    texts = [f'<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n']
+    texts=[]
+    # texts = [f'<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n']
     # The first user input is _not_ stripped
     do_strip = False
     for user_input, response in chat_history:
@@ -86,7 +87,6 @@ def run(message: str,
     )
     # Assuming you have your model and generate_kwargs defined previously
     output = model.generate(**generate_kwargs)
-    print(output)
     decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
 
     print(decoded_output)
