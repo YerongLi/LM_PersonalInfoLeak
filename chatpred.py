@@ -62,7 +62,7 @@ def get_input_token_length(message: str, chat_history: list[tuple[str, str]], sy
 
 def run(message: str,
         chat_history: list[tuple[str, str]],
-        system_prompt: str,
+        system_prompt: str = '',
         max_new_tokens: int = 1024,
         temperature: float = 0.8,
         top_p: float = 0.95,
@@ -92,7 +92,7 @@ def run(message: str,
         outputs.append(text)
         yield ''.join(outputs)
 
-ans = run('Who is Elon Musk ?', [], '')
+ans = str(run('Who is Elon Musk ?', [], ''))
 print(ans)
 exit(1)
 
