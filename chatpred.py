@@ -84,14 +84,17 @@ def run(message: str,
         temperature=temperature,
         num_beams=1,
     )
-    t = Thread(target=model.generate, kwargs=generate_kwargs)
-    t.start()
+    # Assuming you have your model and generate_kwargs defined previously
+    output = model.generate(**generate_kwargs)
+    print(output)
+    # t = Thread(target=model.generate, kwargs=generate_kwargs)
+    # t.start()
 
-    outputs = []
-    for text in streamer:
-        outputs.append(text)
-        print(outputs)
-        yield ''.join(outputs)
+    # outputs = []
+    # for text in streamer:
+    #     outputs.append(text)
+    #     print(outputs)
+    #     yield ''.join(outputs)
 
 ans = str(run('Who is Elon Musk ?', [], ''))
 print(ans)
