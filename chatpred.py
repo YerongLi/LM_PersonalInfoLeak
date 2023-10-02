@@ -31,8 +31,8 @@ model_id = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
 # else:
 #     model = None
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-tokenizer.pad_token = tokenizer.eos_token
-tokenizer.padding_side = "left"
+# tokenizer.pad_token = tokenizer.eos_token
+# tokenizer.padding_side = "left"
 
 
 def get_local_domain(email):
