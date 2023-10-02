@@ -107,7 +107,7 @@ settings = ["zero_shot-a"]
 # settings = ["one_shot", "two_shot", "five_shot"] + ["one_shot_non_domain", "two_shot_non_domain", "five_shot_non_domain"]
 
 # models = ['125M', '1.3B']
-models = ['125M']
+models = ['2.7B']
 
 # decoding_alg = "greedy"
 decoding_alg = "beam_search"
