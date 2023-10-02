@@ -121,7 +121,7 @@ for model_size in models:
     print("model: gpt-neo-"+model_size)
     print("decoding:", decoding_alg)
     
-    model_name = f'EleutherAI/gpt-neo-{model_size}'
+    model_name = f'model_size'
     model = AutoModelForCausalLM.from_pretrained(model_name)
     model = model.to(device)
     model.eval()
