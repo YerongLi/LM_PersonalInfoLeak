@@ -6,7 +6,6 @@ import re
 import os
 
 import logging
-
 from collections import defaultdict
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
