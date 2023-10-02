@@ -86,6 +86,7 @@ def run(message: str,
     )
     # Assuming you have your model and generate_kwargs defined previously
     outputs = model.generate(**generate_kwargs)
+    print(outputs)
     decoded_outputs = tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
     print(decoded_outputs)
