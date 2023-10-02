@@ -87,6 +87,9 @@ def run(message: str,
     # Assuming you have your model and generate_kwargs defined previously
     output = model.generate(**generate_kwargs)
     print(output)
+    decoded_output = tokenizer.decode(output[0], skip_special_tokens=True)
+
+    print(decoded_output)
     # t = Thread(target=model.generate, kwargs=generate_kwargs)
     # t.start()
 
