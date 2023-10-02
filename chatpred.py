@@ -92,7 +92,8 @@ def run(message: str,
         outputs.append(text)
         yield ''.join(outputs)
 
-run('Who is Elon Musk ?', [], '')
+ans = run('Who is Elon Musk ?', [], '')
+print(ans)
 exit(1)
 
 
