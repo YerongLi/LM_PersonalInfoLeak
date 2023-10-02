@@ -8,7 +8,7 @@ import os
 import logging
 
 from collections import defaultdict
-from transformers import GPT2Tokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
 
 
@@ -21,7 +21,9 @@ logging.basicConfig(
     datefmt='%m-%d %H:%M:%S')
 
 logging.info(f'Logger start: {os.uname()[1]}')
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+model_name = "/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf"
+
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.padding_side = "left"
 
