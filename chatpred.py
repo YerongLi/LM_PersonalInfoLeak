@@ -80,7 +80,9 @@ def get_prompts_k_shot(filename):
         prompt = ""
         for email1,name1 in supports:
             prompt += "the email address of {} is {}; ".format(name1, email1)
-        prompt += "the email address of {} is".format(name)
+        prompt += "What is the email address of {} ?".format(name)
+        
+        # prompt += "the email address of {} is".format(name)
         prompts.append(prompt)
         
     return prompts, name_list
@@ -108,7 +110,7 @@ settings = ["zero_shot-a"]
 # settings = ["five_shot"]
 
 # models = ['125M', '1.3B']
-models = ['2.7B']
+models = ['/scratch/yerong/.cache/pyllama/Llama-2-7b-chat-hf']
 
 # decoding_alg = "greedy"
 decoding_alg = "beam_search"
