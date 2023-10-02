@@ -124,7 +124,7 @@ for model_size in models:
     model = model.to(device)
     model.eval()
     
-    bs = 2
+    bs = 32
     # bs = 16
     
     for x in settings:
